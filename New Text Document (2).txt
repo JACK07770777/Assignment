@@ -1,0 +1,140 @@
+Q1 sql 
+CREATE DATABASE School;
+USE School;
+
+CREATE TABLE Student(
+Rollno INT PRIMARY KEY,
+Name VARCHAR(10),
+Branch VARCHAR(20));
+
+INSERT INTO Student VALUES(1, "Jay", "Computer Science");
+INSERT INTO Student VALUES(2, "Suhani", "Electronic & Com");
+INSERT INTO Student VALUES(3, "Kirti", "Electronic & Com");
+
+SELECT * FROM Student;
+
+CREATE TABLE Exam(
+Rollno INT,
+FOREIGN KEY (Rollno) REFERENCES Student(Rollno),
+S_code VARCHAR(10),
+Marks VARCHAR(10),
+P_code VARCHAR(10));
+
+INSERT INTO Exam VALUES(1, "CS11", 50, "CS");
+INSERT INTO Exam VALUES(1, "CS12", 60, "CS");
+INSERT INTO Exam VALUES(1, "EC101", 66, "EC");
+INSERT INTO Exam VALUES(1, "EC102", 70, "EC");
+INSERT INTO Exam VALUES(1, "EC101", 45, "EC");
+INSERT INTO Exam VALUES(1, "EC102", 50, "EC");
+
+SELECT * FROM Exam;
+****************************************Q2 Sql**************************
+USE School;
+
+CREATE TABLE User_info(
+First_Name VARCHAR(20),
+Last_Name VARCHAR(20),
+Address VARCHAR(50),
+City VARCHAR(10),
+Age INT);
+
+INSERT INTO User_info VALUES ("Micky", "Mouse", "123 Fantasy Way", "Anaheim", 73);
+INSERT INTO User_info VALUES ("Bat", "Man", "321 Cavern Ave", "Gotham", 54);
+INSERT INTO User_infO VALUES ("Wonder", "Woman", "987 Truth Way", "Paradise", 39);
+INSERT INTO User_info VALUES ("Donald", "Duck", "555 Quack Street", "Mallard", 65);
+INSERT INTO User_info VALUES ("Bugs", "Bunny", "567 Carrot Street", "Rascal", 58);
+INSERT INTO User_info VALUES ("Wiley", "Coyote", "999 Acme Way", "Canyon", 61);
+INSERT INTO User_info VALUES ("Cat", "Woman", "234 Purrfect Street", "Hairball", 32);
+INSERT INTO User_info VALUES ("Tweety", "Bird", "543", "Itotltaw", 28);
+
+
+SELECT * FROM User_info;
+****************************************Q3 Sql**************************
+
+USE School;
+
+CREATE TABLE Employee(
+Employee_id INT AUTO_INCREMENT,
+PRIMARY KEY(Employee_id),
+First_name VARCHAR(20),
+last_name VARCHAR(20),
+Salary INT,
+Joining_date VARCHAR(20),
+Department VARCHAR (20));
+
+INSERT INTO employee VALUES (1, "John", "Abraham", 1000000, "01-Jan-13 12 AM", "Bankiing");
+INSERT INTO employee VALUES(2, "Michael", "Clarke", 800000, "01-JAN-13 12 AM", "Insurance");
+INSERT INTO employee (First_name, Last_name, Salary, Joining_date, Department) VALUES ("Roy", "Thomas", 700000, "01-FEB-13 12 AM", "Banking");
+INSERT INTO employee (First_name, Last_name, Salary, Joining_date, Department) VALUES ("Tom","Jose",600000,"01-FEB-13 12 AM","Insurance");
+INSERT INTO employee (First_name, Last_name, Salary, Joining_date, Department) VALUES ("Jerry","Pinto",650000,"01-FEB-13 12 AM","Insurance");
+INSERT INTO employee (First_name, Last_name, Salary, Joining_date, Department) VALUES ("Philip","Mathew",750000,"01-JAN-13 12 AM","Services");
+INSERT INTO employee (First_name, Last_name, Salary, Joining_date, Department) VALUES ("TestName1","123",650000,"01-JAN-13 12 AM","Services");
+INSERT INTO employee (First_name, Last_name, Salary, Joining_date, Department) VALUES ("TestName2","Lname%",600000,"01-FEB-13 12 Am","Insurance");
+
+SELECT * FROM Employee;
+
+CREATE TABLE Incentive(
+Employee_ref_id INT,
+Incentive_date VARCHAR (20),
+Incentive_amount INT);
+
+INSERT INTO Incentive VALUES(1, "01-FEB-13", 5000);
+INSERT INTO Incentive VALUES(2, "01-FEB-13", 3000);
+INSERT INTO Incentive VALUES(3, "01-FEB-13", 4000);
+INSERT INTO Incentive VALUES(1, "01-JAN-13", 4500);
+INSERT INTO Incentive VALUES(2, "01-JAN-13", 3500);
+
+SELECT * FROM Incentive;
+
+SELECT First_name FROM Employee;
+SELECT First_name, Joining_date, Salary FROM Employee;
+SELECT * FROM Employee ORDER BY First_name;
+SELECT * FROM Employee ORDER BY Salary DESC;
+SELECT * FROM Employee WHERE First_name like "J%";
+SELECT Department, Salary FROM Employee ORDER BY Salary;
+SELECT First_name, Incentive_amount FROM Employee A INNER JOIN Incentive B ON A.Employee_id=B.Employee_ref_id AND Incentive_amount>3000;
+
+******************************************Q4 sql*********************
+CREATE DATABASE COMPANY_INFORMATION;
+
+USE COMPANY_INFORMATION;
+
+CREATE TABLE SALSEPERSON(
+SNo INT PRIMARY KEY,
+SNAME VARCHAR(20),
+CITY VARCHAR(10),
+COMM FLOAT);
+
+INSERT INTO SALSEPERSON VALUES(1001, "Peel", "London", .12);
+INSERT INTO SALSEPERSON VALUES(1002, "serres", "San Jose", .13);
+INSERT INTO SALSEPERSON VALUES(1004, "Motika", "London", .11);
+INSERT INTO SALSEPERSON VALUES(1007, "Rafkin", "Barcelona", .15);
+INSERT INTO SALSEPERSON VALUES(1003, "AxelRod", "New york", .1);
+
+SELECT * FROM SALSEPERSON;
+
+CREATE TABLE CUSTOMER(
+CNM INT PRIMARY KEY,
+CNAME VARCHAR(20),
+CITY VARCHAR(10),
+RATING INT,
+SNO INT,
+FOREIGN KEY (SNo) REFERENCES SALSEPERSON (SNo));
+
+INSERT INTO CUSTOMER VALUES (201, "Hoffman","London", 100, 1001);
+INSERT INTO CUSTOMER VALUES (202, "Giovanne","Roe", 200, 1003);
+INSERT INTO CUSTOMER VALUES (203, "Liu","San Jose", 300, 1002);
+INSERT INTO CUSTOMER VALUES (204, "Grass", "Barcelona", 100, 1002);
+INSERT INTO CUSTOMER VALUES (206, "Clements", "London", 300, 1007);
+INSERT INTO CUSTOMER VALUES (207, "Pereira", "Roe", 100, 1004);
+
+SELECT * FROM CUSTOMER;
+
+SELECT SNAME,CITY FROM SALSEPERSON WHERE CITY="London" AND COMM >=.12;
+SELECT * FROM SALSEPERSON WHERE CITY IN ("Barcelona", "London");
+SELECT SNo, SNAME, COMM FROM SALSEPERSON WHERE COMM between 0.10 AND 0.12; 
+SELECT * FROM CUSTOMER WHERE Rating >=100 or CITY ="Roe";
+
+******************************************Q5*************************
+
+
